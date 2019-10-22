@@ -12,7 +12,7 @@
 
 ### Types of Media
 
-####　Media propagate(传播) signals that carry bits of information
+#### Media propagate(传播) signals that carry bits of information
 
 #### We'll look at some common types:
 
