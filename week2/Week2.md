@@ -6,7 +6,7 @@
 
 #### Concerns how signals are used to transfer message bits over a link
 
-——Wires etc. carry analog signals(模拟信号)
+——Wires etc. carry <u>analog signals</u>(模拟信号)
 
 ——We want to send digital bits()
 
@@ -94,7 +94,7 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 #### Long,thin,pure strands of glass
 
-----Enormous bandwidth(巨大的带宽)(high speed) over long distances
+----<u>Enormous bandwidth</u>(巨大的带宽)(high speed) over long distances
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_03.png)
 
