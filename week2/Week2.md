@@ -16,7 +16,7 @@
 
 We'll end with an abstarction of a physical channel
 
-——Rate(or bandwidth(带宽),capacity(容量),speed(速度)) in bits/second
+——Rate(or bandwidth(带宽),capacity(容量),speed(速度)) in bits/second(单位)
 
 ——Delay(延迟) in seconds,related to length
 
