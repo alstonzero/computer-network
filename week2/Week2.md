@@ -117,3 +117,113 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_06.png)
+
+
+
+
+
+## 2-4  Moudlation
+
+### Topic
+
+#### We've talked about <u>signals representing bits</u>.How exactly?（具体如何用信号来表示bits）
+
+——This is the topic of <u>modulation</u>
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_01.png>)
+
+### A simple Modulation
+
+#### Let a high vlotage(+V)(高电压) represent a 1,and low voltage(-V)(低电压) represent a 0
+
+#### ——This is called NRZ(Non-Return to Zero，不归零编码)
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_02.png>)
+
+
+
+### Many Other Schemes
+
+#### Can use more signal levels,e.g.,4 levels is 2 bits per symbol
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4-_02.png>)
+
+#### Practical schemes are driven by engineering considerations
+
+**——E.g, clock recovery**(时钟恢复)
+
+### Clock Recovery(时钟恢复)
+
+#### how many zeros was that?
+
+——Receiver needs frequent signal transitions to decode bits.
+
+接收器需要频繁的信号转换来解码bits
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_03.png>)
+
+#### Several possible designs
+
+**——E.g. Manchester coding（曼彻斯特编码） and scrambling(扰码)**
+
+### Clock Recovery——4B/5B（编码）
+
+#### Map every 4 data bits into 5 code bits without long runs of zeros
+
+4B/5B的思想是在比特流中插入额外的比特以打破一连串的0或1。准确地讲，就是用5个比特来编码4个比特的数据，之后再传给接收方，因此称为4B/5B。
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_04.png>)
+
+#### ——Has at most 3 zeros in a row （至多一行有三个0）
+
+5比特代码是由以下方式选定的：每个代码最多有1个前导0，并且末端最多有两个0。因此，当连续传送时，在传输过程中任何一对5比特代码连续的0最多有3个。
+
+#### ——Also invert signal level on a 1 to break up long runs of 1s(called NRZI)
+
+然后，再将得到的5比特代码使用**NRZI编码传输**，这种方式说明了为什么仅需关心多个连续0的处理，因为NRZI已解决了多个连续1的问题。注意，4B/5B编码的效率为80%。
+
+![](<https://www.2cto.com/uploadfile/2015/0612/20150612043953464.png>)
+
+
+
+可用于表示线路空闲，00000表示线路不通，00100表示停止。在剩下的13个码中，7个是无效的（因为它们违反了1个前导、0或两个末尾0的规则），另外6个代表各种控制符号。在本章后面将会看到，某些组帧协议会使用这些控制符号。
+
+#### Example:
+
+
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_05（1）.png)
+
+
+
+
+
+### Passband Modulation
+
+#### What we have seen so far is <u>baseband</u> modulation for wires
+
+——Signal is sent directly on a wire 信号直接通过线发送
+
+#### These signals do not propagate well on fiber/wireless
+
+——Need to send at higher frequencies
+
+#### <u>Passband</u> modulation carries a signal by modulating a carrier (通过载波来承载信号)
+
+
+
+#### Carrier is simply a signal oscillation(信号振荡) at a desired frequency: 载波是在所需频率下的信号振荡
+
+#### We can modulate it by changing :
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_06.png>)
+
+amplitude:振幅
+
+frequency:频率
+
+phase:相
+
+#### Example:
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_07.png>)
