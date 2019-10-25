@@ -122,7 +122,7 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 
 
-## 2-4  Moudlation
+## 2-4  Moudlation(调制)
 
 ### Topic
 
@@ -142,13 +142,13 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 
 
-### Many Other Schemes
+### Many Other Schemes(方案)
 
 #### Can use more signal levels,e.g.,4 levels is 2 bits per symbol
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4-_02.png>)
 
-#### Practical schemes are driven by engineering considerations
+#### Practical schemes(实用方案) are driven by engineering considerations
 
 **——E.g, clock recovery**(时钟恢复)
 
@@ -198,7 +198,14 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 
 
-### Passband Modulation
+### Passband Modulation(带通调制（载波调制）)
+
+把基带信号的频率范围搬移到较高的频段，并转换为模拟信号，经过载波调制后的信号为带通信号（仅在一段频率范围内能够通过信道），而使用载波调制的调制成为带通调制。
+目的: 要传输的信号加载在载波信号上进行传输,因为载波信号传得远。
+
+最基本的调制方法：
+1.调幅（AM） 例如：0或1分别对应无载波或有载波输出。 2.调频（FM） 例如：0或1分别对应频率f1或f2。
+3.调相（PM） 例如：0或1分别对应相位0度或180度。
 
 #### What we have seen so far is <u>baseband</u> modulation for wires
 
