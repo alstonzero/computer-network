@@ -234,3 +234,64 @@ phase:相
 #### Example:
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_07.png>)
+
+
+## Limits
+
+### How rapidly can we send information over a link?
+
+#### ——Nyquist limit （奈奎斯特定理/采样定理）
+
+#### ——Shannon capacity （香农定理）
+
+### Practiacal systems are devised to approach these limits
+
+### Key Channel Properties
+
+#### The bandwidth(B),signal strength(S),and noise strength(N)
+
+——B limits the rate of transitions	B带宽限制了传输速率
+
+——S and N limit how many signal levels we can distinguish	 
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-5_01.png>)
+
+### Shannon Capacity香农定理
+
+香农定理给出了信道信息传送速率的上限（比特每秒）和信道信噪比及带宽的关系。香农定理可以解释现代各种无线制式由于带宽不同，所支持的单载波最大吞吐量的不同。
+
+#### How many levels we can distinguish depends on S/N（信噪比）
+
+——Or **SNR**, the <u>Signal-to-Noise Ratio</u>	
+
+（注：**信噪比**（英语：**Signal-to-noise ratio**，缩写为**SNR**或**S/N**），又称**訊噪比**，是科学和工程中所用的一种度量，用于比较所需[信号](https://zh.wikipedia.org/wiki/信号_(信息论))的强度与背景噪声的强度。其定义为信号功率与噪声功率的比率，以[分贝](https://zh.wikipedia.org/wiki/分貝)（dB）为单位表示。大于比率1:1（高于0分贝）表示信号多于噪声。信噪比通常用于描述电子信号，也可以应用在各种形式的信号，比如冰芯内的同位素量，或细胞间的生物化学信号。）
+
+——Note noise is random, hence some errors(噪音是随机的，因此有错误)
+
+#### SNR　given　on　a　log-scale（对数标尺）	in	deciBels（分贝）:	
+
+——SNR(dB) = 10log10(S/N)	
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-5_02.png>)
+
+#### Shannon limit is for capacity(C), the maximum information carrying rate of the channel:	
+
+![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-5_03.png>)
+
+
+
+### Wired/Wireless Perspective
+
+#### Wires,and　Fiber（有线和光纤）
+
+——Engineer link to have requisite SNR and B
+
+——Can fix data rate	
+
+#### Wireless（无线）
+
+——Given	B,	but	SNR	varies	greatly,	e.g.,	up	to	60	dB!	
+
+——Can’t	design	for	worst	case,	must	adapt	data	rate	
+
+
