@@ -235,7 +235,7 @@ phase:相
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_07.png>)
 
-
+## 2-5
 ## Limits
 
 ### How rapidly can we send information over a link?
