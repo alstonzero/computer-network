@@ -74,7 +74,9 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 #### Very common;used in LANs and telephone lines
 
-——Twists reduce radiated signal(传播信号)
+双绞线由两根相互绝缘的铜线组成，铜线的直径大约是一毫米。两根铜线以螺旋状的形式紧紧地绞在一起，就像一个DNA分子链。当两根线绞在一起后，不同电线产生的干扰波会相互抵消，从而能显著降低电线的辐射。<u>信号通常以两根电线的电压差来承载</u>，这样对外部噪声有更好的免疫力。因为噪声对两根电线的干扰是相同的，而它们的电压差却不会改变。
+
+——Twists reduce <u>radiated signal</u>(传播信号)
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_01.png)
 
@@ -83,6 +85,7 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 ### Wires----Coaxial Cable（同轴电缆）
 
 #### Also common.Better shielding for better performance
+它比非屏蔽的双绞线有更好的屏蔽特性和更大的带宽，所以它能以很高的速率传输相当长的距离。同轴电缆的结构和屏蔽性使得它既有很高的带宽，又拥有很好的抗噪性。带宽可能取决于电缆的质量和长度。
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_02.png)
 
@@ -90,9 +93,12 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 
 #### Other kinds of wires too
 
-### Fiber
+### Fiber(光纤)
 
 #### Long,thin,pure strands of glass
+
+#### 光纤传输系统由三个关键部件组成：光源，传输介质和探测器。
+一个光脉冲表示比特1，没有光脉冲表示比特0。传输介质是超波玻璃纤维。光探测器探测光时产生一个电脉冲。在光纤两端分别接上光源和探测器，我们就有了单向数据传输系统。该系统接收电子信号，将其转换成光脉冲并传输出去，然后在另一端把光脉冲转换回电子信号输出给接收端。
 
 ----<u>Enormous bandwidth</u>(巨大的带宽)(high speed) over long distances
 
@@ -103,6 +109,7 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 ### Two varieties(两种):multi-mode(shorter links,cheaper) and single-mode(up to ~100km)
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_04.png)
+(a)单根光纤侧面图 (b)三根光纤的横截面视图
 
 ### Sender radiates（传播） signal over a region
 
