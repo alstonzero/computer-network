@@ -126,7 +126,8 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-2_06.png)
 
 
-
+ISM:Industrial,Scientific,Medical 工业科学医学。
+例如：车库门控制器、无绳电话、无线电遥控的玩具，无线鼠标等。
 
 
 ## 2-4  Moudlation(调制)
@@ -134,6 +135,8 @@ propagation delay:传播延迟 信息在wire上传播所用的时间
 ### Topic
 
 #### We've talked about <u>signals representing bits</u>.How exactly?（具体如何用信号来表示bits）
+有线和无线信道运载模拟信号，模拟信号可表示成诸如连续变化的电压、光照强度或声音强度。为了发送数字信息，我们必须设法用模拟信号来表示比特。
+比特与代表它们的信号之间的转换过程成为 **数字调制（digital modulaton）**
 
 ——This is the topic of <u>modulation</u>
 
