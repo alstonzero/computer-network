@@ -318,4 +318,106 @@ phase:相
 
 ——Can’t	design	for	worst	case,	must	adapt	data	rate	
 
+## 2 -6 Framing
 
+### Topic
+
+#### The Physical layer gives us a stream of bits.How do we interpret it as a sequence of frames?
+
+对于数据链路层来说，通常的做法是将比特流拆分成多个离散的帧，为每个帧计算一个称为校验和的短令牌，并将该校验和放在帧中一起传输。
+
+当帧达到目标机器时，要重新计算该帧的校验和。如果新算出来的校验和与该帧中包含的校验和不同，则数据链路层知道传输过程中产生了错误，它就会采取措施来处理错误。
+
+
+
+### Framing Methods(成帧方法)
+
+#### Byte count(motivation):字节计数法
+
+#### Byte stuffing：字节填充的标志字节法
+
+#### Bit stuffing:比特填充的标志字节法
+
+
+
+#### IN practice,the physical layer often helps to identify frame boundaries
+
+—E.g.,Ethernet,802.11
+
+### Byte Count——字节计数法
+
+#### First try:
+
+#### ——Let's start each frame with a length field!
+
+利用头部中的一个字段来标识该帧中的字符数。
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_01.png)
+
+#### 这个算法的问题在于计数值有可能因为一个传输错误而被弄混
+
+#### Difficult to re-synchronize(重新同步) after framing error
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_02.png)
+
+
+
+### Byte Stuffing——字节填充法
+
+#### Better idea：考虑到了出错之后的重新同步问题
+
+#### —— Have a special flag byte value that means start/end of frame
+
+每个帧用一些特殊的字节作为开始和结束。
+
+#### ——Replace ("stuff")the flag inside the frame with an escape code
+
+每个标志字节的前面插入一个特殊的转义字节(ESC)
+
+#### ——Complication:have to escape the escape code too!
+
+如果转义字节也在数据中，答案是同样的，即用一个转义字节来填充 
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_03.png)
+
+#### Rules:
+
+#### ——Replace each FLAG in data with ESC FLAG
+
+#### ——Replace each ESC in data with ESC ESC
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_04.png)
+
+### Bit Stuffing——比特填充法
+
+
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_05.png)
+
+
+
+### Link Example:PPP over SONET
+
+
+
+#### PPP is Point-to-Point Protocol 点到点协议
+
+#### Widely used for link framing
+
+使用链路发送数据包
+
+——E.g it is used to frame IP packets that are sent over SONET optical links
+
+#### Think of SONET as a bit stream,and PPP as the framing that carries and IP packet over the link
+
+SONET是物理层协议，它最常被用在广域网的光纤链路上。
+
+为了在链路上承载数据包。运行在IP路由上的PPP提供了这个成帧机制。
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_06.png)
+
+#### Framing uses byte stuffing
+
+#### ——FLAG is 0x7E and ESC is 0x7D
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_07.png)
