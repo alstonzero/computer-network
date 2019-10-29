@@ -141,12 +141,18 @@ ISM:Industrial,Scientific,Medical 工业科学医学。
 ——This is the topic of <u>modulation</u>
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_01.png>)
+#### Baseband transmission(基带传输):有线介质普遍使用
+即信号的传输占有传输介质上从<u>零到最大值</u>之间的全部频率，而最大频率则取决于信令速率。
 
-### A simple Modulation
+#### Passband transmission(通带传输):无线和光纤普遍使用
+即信号占据了以载波信号频率为中心的一段频带。在无线和光纤这样的传输介质中只能在给定的频带中传输信号。
+
+### 1、基带传输 
+
+#### A simple Modulation—— NRZ(Non-Return to Zero，不归零编码)
 
 #### Let a high vlotage(+V)(高电压) represent a 1,and low voltage(-V)(低电压) represent a 0
 
-#### ——This is called NRZ(Non-Return to Zero，不归零编码)
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4_02.png>)
 
@@ -157,6 +163,8 @@ ISM:Industrial,Scientific,Medical 工业科学医学。
 #### Can use more signal levels,e.g.,4 levels is 2 bits per symbol
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-4-_02.png>)
+利用有限带宽的一种更有有效的策略是**使用两个以上的信号级别**，例如采用4个电压级别，我们可以用单个符号(symbol)一次携带2个比特。
+
 
 #### Practical schemes(实用方案) are driven by engineering considerations
 
@@ -165,6 +173,7 @@ ISM:Industrial,Scientific,Medical 工业科学医学。
 ### Clock Recovery(时钟恢复)
 
 #### how many zeros was that?
+在NRZ编码方法中。符号简单地对应为电压等级，一长串的0或1使信号级别保持不变。经过一段时间以后，接收器很难区分出各个比特，比如15个0看起来像16个0，除非有一个非常准确的时钟。
 
 ——Receiver needs frequent signal transitions to decode bits.
 
@@ -177,6 +186,7 @@ ISM:Industrial,Scientific,Medical 工业科学医学。
 **——E.g. Manchester coding（曼彻斯特编码） and scrambling(扰码)**
 
 ### Clock Recovery——4B/5B（编码）
+目的：解决一长串的0。
 
 #### Map every 4 data bits into 5 code bits without long runs of zeros
 
@@ -186,7 +196,7 @@ ISM:Industrial,Scientific,Medical 工业科学医学。
 
 #### ——Has at most 3 zeros in a row （至多一行有三个0）
 
-5比特代码是由以下方式选定的：每个代码最多有1个前导0，并且末端最多有两个0。因此，当连续传送时，在传输过程中任何一对5比特代码连续的0最多有3个。
+5比特代码是由以下方式选定的：每个代码最多有1个前导0，并且末端最多有两个0。因此，当连续传送时，在传输过程中任何一对5比特代码连续的0最多有3个。且永远不会出现连续三个0。
 
 #### ——Also invert signal level on a 1 to break up long runs of 1s(called NRZI)
 
@@ -251,6 +261,8 @@ phase:相
 ### How rapidly can we send information over a link?
 
 #### ——Nyquist limit （奈奎斯特定理/采样定理）
+奎尼斯特公式：表示一个有限带宽的无声噪信道的最大传输率。
+
 
 #### ——Shannon capacity （香农定理）
 
@@ -268,7 +280,7 @@ phase:相
 
 ### Shannon Capacity香农定理
 
-香农定理给出了信道信息传送速率的上限（比特每秒）和信道信噪比及带宽的关系。香农定理可以解释现代各种无线制式由于带宽不同，所支持的单载波最大吞吐量的不同。
+香农定理给出了信道信息传送速率的上限（比特每秒bit/s）和信道信噪比(S/N)及带宽(B)的关系。香农定理可以解释现代各种无线制式由于带宽不同，所支持的单载波最大吞吐量的不同。
 
 #### How many levels we can distinguish depends on S/N（信噪比）
 
@@ -280,11 +292,13 @@ phase:相
 
 #### SNR　given　on　a　log-scale（对数标尺）	in	deciBels（分贝）:	
 
-——SNR(dB) = 10log10(S/N)	
+通常情况下为了适应很大的范围，该比率表示成对数形式——SNR(dB) = 10log10(S/N)	
+对数的取值单位为分贝(dB)。例如：10的信噪比是10分贝，100的信噪比是20分贝，1000的信噪比是30分贝。
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-5_02.png>)
 
 #### Shannon limit is for capacity(C), the maximum information carrying rate of the channel:	
+对于一条带宽为B Hz、噪声比是S/N的有噪声信道，其最大数据速率或者容量(capacity)是
 
 ![](<https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-5_03.png>)
 
