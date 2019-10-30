@@ -421,3 +421,12 @@ SONET是物理层协议，它最常被用在广域网的光纤链路上。
 #### ——FLAG is 0x7E and ESC is 0x7D
 
 ![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-6_07.png)
+
+#### Byte stuffing method
+#### ——To stuff(unstuff) a byte,add(remove) ESC(0x7D),and XOR byte with 0x20
+#### ——Removes FLAG from the contenes of the frame.
+
+所有的PPP帧都从标准的HDLC标志字节0x7E(01111110)开始。标志字节0x7E如果出现在Payload字段，则要用转义字节0x7D去填充；然后将紧跟在后面的那个字节与0x20进行XOR操作。
+0x7E ————> 0x7D5E
+0x7D ————> 0x7D5D
+例如，0x7D 0x5E是标志字节0x7E的转义序列。这意味着只要简单扫描0x7E就能找出帧的开始和结束之处，因为这个字节不可能出现在其他地方。
