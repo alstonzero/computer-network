@@ -430,3 +430,114 @@ SONET是物理层协议，它最常被用在广域网的光纤链路上。
 0x7E ————> 0x7D5E
 0x7D ————> 0x7D5D
 例如，0x7D 0x5E是标志字节0x7E的转义序列。这意味着只要简单扫描0x7E就能找出帧的开始和结束之处，因为这个字节不可能出现在其他地方。
+
+
+### 2-7  Error Overview
+
+#### Some bits will be received in error due to noise.
+
+What can we do?
+
+——Detect errors with codes
+
+——Correct errors with codes
+
+——Retransmit lost frames 
+
+#### Reliablity is a concern that cuts across the layers-we'll see it again
+
+
+
+### Approach——Add Redundancy
+
+#### Error detection codes
+
+—— Add <u>check bits</u> to the message bits to let some errors be detected
+
+#### Error correction codes
+
+——Add more <u>check bits</u> to let some errors be corrected
+
+
+
+**Key issue is now to structure the code to detect many errors with few check bits and modest computation**
+
+### Motiviating
+
+#### A simple code to handle errors:
+
+——Send two copies!Error if differnent.
+
+#### How good is this code?
+
+—— How many errors can it detect/correct?
+
+—— How many errors will make it fail?
+
+
+
+#### We want to handle more errors with less overhead
+
+——Will look at better code;they are applied mathematics
+
+——But,they can't handle all errors
+
+——And they focus on accidental errors(wiil look at secure hashes later)
+
+
+
+### Using Error Code
+
+#### Codeword consits of D data plus R check bits(=systematic block code)
+
+
+
+#### Sender:
+
+——Compute R check bits based on the D data bits;send the codeword of D+R bits
+
+
+
+### Receiver:
+
+——Receive D+R bits with unknown errors
+
+——Recompute R check bits based on the D data bits;error if R dosen't matvh R'
+
+
+
+### Intuition for Error
+
+#### For D data bits,R check bits:
+
+
+
+#### Randomly chosen codeword is unlikely to be correct;overhead is low
+
+
+
+
+
+### Hamming Distance
+
+#### Distance is the number of bit flips needed to change D1 to D2
+
+
+
+#### <u>Hamming distance</u> of a code is the minimum distance between any pair of codewords
+
+
+
+#### Error detection:
+
+——For a code of distance d+1,up to d errors will always be detected.
+
+
+
+
+
+——For a code of distance 2d+1,up to d errors can always be corrected by mapping to the closest codeword.
+
+
+
+ 
