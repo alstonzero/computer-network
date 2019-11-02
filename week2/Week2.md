@@ -539,5 +539,224 @@ What can we do?
 ——For a code of distance 2d+1,up to d errors can always be corrected by mapping to the closest codeword.
 
 
+## 2-8 Error Detection
+
+
+
+### Simple Error Detection——Parity Bit（奇偶）
+
+#### Take D data bits,add 1 check bit that is the sum of the D bits
+
+把单个奇偶校验位附加到数据中。
+
+#### ——Sum is modulo 2 or XOR
+
+
+
+**How well does parity work?**
+
+#### The distance of the code is 2.
+
+具有单个校验位的编码具有码距2
+
+#### Detect 1 error ，correct 0 error
+
+奇偶码可以检测出1个错误，不能改正错误
+
+
+
+### CheckSum 校验和
+
+#### Idea:sum up data in N-bit words 
+
+——widely used in,e.g,TCp/IP/UDP
+
+校验和通常放在消息的末尾。通过对整个接收到的码字(包含了数据位和校验和)进行求和计算就能检测出错误
+
+
+
+#### Stronger protection than parity 
+
+
+
+#### Example——Internet Checksum
+
+Internet 校验和，是按16位字计算得出的消息位总和。由于此方法针对字而不是像奇偶校验那样针对位进行操作，因此奇偶校验没能检出的错误此时仍然可以检出。
+
+#### Sending : 发送方步骤
+
+1.Arrange data in 16-bits words.
+
+2.Put zero in checksum position,add 把0放到校验和的位置上，并相加
+
+3.Add any carryover back to get 16bits  任何高序位溢出被放回到低序位上
+
+4.Negate(complement)to get sum 
+
+加图
+
+#### Receiving 接收方步骤
+
+
+
+#### The distance of the code is 2.
+
+#### It can detect 1 error and correct 0.
+
+
+
+### CRC   循环冗余校验码
+
+也称作多项式编码。
+
+#### 基本思想：将位串看成是系数为0或1的多项式。
+
+一个k位帧(frame)看作是一个k-1次多项式的系数列表，该多项式共有k项，从x^k-1到x^0。
+
+e.g 1、1、0、0、0、1，即 1x^5+1x^4+0x^3+0x^2+0x^1+1x^0
+
+多项式算数运算以2为模完成，加法没有进位，减法没有退位。
+
+
+
+
+
+## 2-9 Error Correction
+
+### Use Hamming code to fix error
+
+### 为了可靠检测d个错误，需要一个距离为d+1的编码方案
+
+**Suppose we construct a code with a Hamming distance of at least3**
+
+**——Need >=3 bit errors to change one valid codeword into another (需要大于3bits的错误才能把一个有效编码转换成另一个)**
+
+**——Single bit errors will be closest to a unique valid codeword**
+
+因为在这样的编码方案中，d个1位错误不可能将一个有效码字改变成另一个有效码字。
+
+### 为了纠正d个错误，需要一个距离为2d+1的编码方案
+
+**If we assume errors are only 1 bit,we can correct them by mapping an error to the closet valid codeword **
+
+**——Works for d errors if HD >=2d+1**
+
+因为在这样的编码方案中，合法码字之间的距离足够远，即使发生了d位变化，结果还是离它原来的码字最近。
+
+### Hamming Code 海明方法
+
+#### 2的幂次方的位是校验位，其余位是用来填充数据
+
+Gives a method for constructing a code with a distance of 3
+
+**——Uses n=2^k - k - 1,e.g n = 4,k=3**
+
+——Put check bits in position p that are powers of 2,starting with position 1
+
+——Check bit in position p is parity of positions with a p term in their values
+
+#### Example:data=0101,3 check bits
+
+—— 7 bit code,check bit positions 1,2,4
+
+——Check 1 covers positions 1,3,5,7 
+
+——Check 2 covers positions 2,3,6,7
+
+——Check 4 covers positions 4,5,6,7
+
+**校验码的具体计算方法如下：**
+
+```
+p1（第1个校验位，也是整个码字的第1位）的校验规则是：从当前位数起，校验1位，然后跳过1位，再校验1位，再跳过1位，……。这样就可得出p1校验码位可以校验的码字位包括：第1位（也就是p1本身）、第3位、第5位、第7位、第9位、第11位、第13位、第15位，……。然后根据所采用的是奇校验，还是偶校验，最终可以确定该校验位的值。
+
+p2（第2个校验位，也是整个码字的第2位）的校验规则是：从当前位数起，连续校验2位，然后跳过2位，再连续校验2位，再跳过2位，……。这样就可得出p2校验码位可以校验的码字位包括：第2位（也就是p2本身）、第3位，第6位、第7位，第10位、第11位，第14位、第15位，……。同样根据所采用的是奇校验，还是偶校验，最终可以确定该校验位的值。
+
+p3（第3个校验位，也是整个码字的第4位）的校验规则是：从当前位数起，连续校验4位，然后跳过4位，再连续校验4位，再跳过4位，……。这样就可得出p4校验码位可以校验的码字位包括：第4位（也就是p4本身）、第5位、第6位、第7位，第12位、第13位、第14位、第15位，第20位、第21位、第22位、第23位，……。同样根据所采用的是奇校验，还是偶校验，最终可以确定该校验位的值。
+```
+
+#### To decode:
+
+
+
+图02
+
+图03
+
+### Other Error Correction
+
+#### Convolutional codes 卷积码
+
+卷积码处理一个输入位序列，并生成一个输出序列
+
+——Take a stream of data and output a mix of the recent input bits
+
+——Makes each output bit less fragile
+
+——Decode usinig Viterbi algorithm
+
+
+
+#### Other Codes——LDPC 低密度奇偶校验码
+
+——LDPC用一个 1 的密度很低的矩阵表示
+
+——接收到的码字通过一个近似算法解码获得
+
+——
+
+**LDPC码比较适用于大块数据，具有出色的纠错能力，性能优越，迅速被新的协议所采用。**，
+
+Heavily used in physical layer 
+
+
+
+### Detection vs. Correction
+
+在高度可靠的信道上（比如光纤）较为合理的做法是使用检错码，当偶尔发生错误时只需重传整个数据块。
+
+然而在错误发生频繁的信道上（比如无线线路），更好的做法是在每一个数据块中加入足够的冗余信息，以便接收方能够计算出原始的数据块。
+
+
+
+#### 1,Assume bit errors are random 偶尔出现的错误
+
+——Message have 0 or maybe 1 error 孤立的单个比特错误
+
+#### Error correction:
+
+——Need ~10 check bits per message
+
+——Overhead 10
+
+#### Error detection
+
+——Need ~10 check bits per message plus 1000 bit retransmission 1/10 of the time
+
+
+
+#### 2,Assume errors come in bursts of 100
+
+错误以100个bit的突发形式出现 
+
+——Only 1or 2 messages in 1000 have errors
+
+#### Error correction:
+
+——Need >>100 check bits per message
+
+—— Overhead ： 》100
+
+#### Error detection
+
+——More efficient when errors are not expected
+
+——And when errors are large when they do occur
+
+
+
+#### 检错码经常被用在链路层、网络层和传输层
+
+#### 纠错码被用在链路层，也会出现在物理层
 
  
