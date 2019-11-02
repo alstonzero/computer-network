@@ -675,13 +675,21 @@ p2（第2个校验位，也是整个码字的第2位）的校验规则是：从�
 p3（第3个校验位，也是整个码字的第4位）的校验规则是：从当前位数起，连续校验4位，然后跳过4位，再连续校验4位，再跳过4位，……。这样就可得出p4校验码位可以校验的码字位包括：第4位（也就是p4本身）、第5位、第6位、第7位，第12位、第13位、第14位、第15位，第20位、第21位、第22位、第23位，……。同样根据所采用的是奇校验，还是偶校验，最终可以确定该校验位的值。
 ```
 
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-9_01.png)
+
+
+
 #### To decode:
 
+接收方检查错误
 
+1、没有错误的情况
 
-图02
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-9_02.png)
 
-图03
+2、有错误的情况
+
+![](https://raw.githubusercontent.com/alstonzero/computer-network/master/week2/pic/2-9_03.png)
 
 ### Other Error Correction
 
@@ -758,5 +766,3 @@ Heavily used in physical layer
 #### 检错码经常被用在链路层、网络层和传输层
 
 #### 纠错码被用在链路层，也会出现在物理层
-
- 
