@@ -62,7 +62,7 @@
 
 ### CSMA/CD(with Collision Detection碰撞检测)先听再说，边听边说
 
-**带冲突检测的CSMA**
+#### **带冲突检测的CSMA**
 
 每个站快速检测到发生冲突后立即停止传输帧(而不是继续完成传输)，因为这些帧已经无可挽回的成为了乱码。这种策略可以节省时间和带宽。
 
@@ -74,13 +74,55 @@ Can reduce the cost  of collision by detecting them and aborting(Jam) the rest o
 
 图
 
+#### 传播时延对载波监听的影响 
+
+最迟多久才能知道自己发送的数据没和别人碰撞？
+
 Want everyone who collides（碰撞）to know that it happened
 
-——Time window in which a node may hear of a collision is 2D seconds
+——Time window in which a node may hear of a collision is **2D seconds**
 
-
+**最多是两倍的总线端到端(往返)的传播时延**
 
 Impose a minimum frame size that lasts for 2D seconds
+
+#### 如何确定碰撞后的重传时机？——截断二进制指数规避算法
+
+**Binary Exponential Backoff(BEB)**
+
+Cleverly estimates the probability
+
+——1 st collision,wait 0 or 1 frame times
+
+——2 nd collision,wait from 0 to 3 times
+
+——3rd collison,wait from 0 to 7 times
+
+定义参数k，它等于重传次数，但k不超过10，即k=min[重传次数，10]。当重传次数不超过10时，k等于重传次数：当重传次数大于10时，k就不再增大而一直等于10。
+
+从离散的整数集合[0,1,...,2^k-1]中随机取出一个数r，重传所需要退避的时间就是r倍的基本退避时间
+
+BEB doubles interval for each successive collision
+
+——Quickly gets large enough to work
+
+——Very efficient in pratice
+
+#### Classic Ethernet,or IEEE 802.3
+
+Most popilar LAN of the 1980s,1990s
+
+——10 Mbps over shared coaxial cable,with baseband signals
+
+——Multiple access with "<u>1-persisten CSMA/CD</u> with BEB"
+
+
+
+#### 最小帧长 
+
+A站发了一个很小的帧，但发生了碰撞，不过帧在发送完毕后才检测到碰撞，没法停止发送，因为发完了。所以要规定一个最小帧长。
+
+帧的传输时延至少要两倍于信号在总线中的传播时延。
 
 ——So node can't finish before collision
 
@@ -110,3 +152,6 @@ Intuition for a better solution
 
 图
 
+###  Ethernet Frame Format
+
+**Has addresses to identify the sender and receiver**
